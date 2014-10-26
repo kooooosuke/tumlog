@@ -1,0 +1,40 @@
+* {
+ margin:0;
+ padding:0;
+}
+
+div.colored {
+ background-color:#bdf;
+}
+
+p {
+ margin-top:2px
+}
+
+#container {
+ width:870px;
+}
+
+#boxA {
+ width:450px;
+ float:left;
+ margin-right:0px
+}
+
+#boxB {
+ width:250px;
+ float:right;
+ margin-left:10px
+}
+
+#boxC {
+ width:120px;
+ float:right;
+ margin-left:10px
+}
+
+.acountform {
+ border: 5px #00C2FC solid;
+ font-size: 2em;
+ text-align: center;
+}

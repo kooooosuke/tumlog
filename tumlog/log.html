@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Script-Type" content="text/javascript" />
+    <title>ログの表示 | Tumlg / たむろぐ！</title>
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.corner.js"></script>
+    <link rel="stylesheet" href="css/css.css" type="text/css" media="all" />
+    <script type="text/javascript">
+        $('div').corner();
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div style="margin-left : auto ; margin-right : auto ;">
+    <h3 style="text-align : center ;">
+      <img src='{{avatar}}' />{{j.response.blog.name}}さんのTumblr「{{j.response.blog.title}}」解析結果
+    </h3>
+    <div id="container" style="margin-left : auto ; margin-right : auto ;">
+　    
+      <div id="boxA">
+      <div class="colored">
+        {% for log_table in log_tables %}
+          <p>{{ log_table.post_date }}  <a href="http://{{j.response.blog.name}}.tumblr.com/post/{{ log_table.post_id }}" target="_blank">{{ log_table.content }}</a></p>
+        {% endfor %}
+        </div>
+      </div>
+      
+      <div id="boxB">
+        <div class="colored">
+          <form action="/datastore" method="post">
+          <div><input type="hidden" name="acount" value="{{j.response.blog.name}}" /></div>
+          <div><input type="submit" value="最新の情報に更新する" /></div>
+          <p>(最新500postの情報を更新)</p>
+          </form>
+        </div>
+        <br />
+
+        <div class="colored">
+          <form action="/ultimetdatastore" method="post">
+          <div><input type="hidden" name="acount" value="{{j.response.blog.name}}" /></div>
+          <div><input type="submit" value="過去の全てのpostの情報を取得" /></div>
+          <p>全てのpostを、埋もれる前に読み込みたい！全ての宇宙、過去<s>と未来</s>の全てのpostを、この手で…！</p><br />
+          <p>1000postにつき約2分半かかります。押した後は閉じても大丈夫です、裏で実行し続けます。エラーになったときは時間をおいて再度読み込んで下さい。</p>
+          </form>
+        </div>
+        <br />
+
+        <div class="colored">
+          総post数: <b>{{j.response.blog.posts}}</b>
+        </div>
+        <br />
+        
+        <div class="colored">
+          読み込み済み総post数: <b>{{totoal_stored_post_num}}</b>
+        </div>
+        <br />
+        
+        <div class="colored">
+        {% for daily_post in recent_daily_posts %}
+          {{ daily_post.date }}   <b>{{ daily_post.count }}</b> posts<br />
+        {% endfor %}
+        </div>
+        <br />
+        
+        <div class="colored">
+        {% for monthly_post in recent_monthly_posts %}
+          {{ monthly_post.date }}   <b>{{ monthly_post.count }}</b> posts<br />
+        {% endfor %}
+        </div>
+
+      </div>
+
+      <div id="boxC">
+        <div class="colored">
+        {% for weekday_rate in weekdays_rate %}
+          {{ weekday_rate }}<br />
+        {% endfor %}
+        </div>
+        <br />
+        
+        <div class="colored">
+        {% for hour_rate in hours_rate %}
+          {{ hour_rate }}<br />
+        {% endfor %}
+        </div>
+      </div>
+
+      </div>
+      
+    </div>
+    </div>
+  </body>
+</html>

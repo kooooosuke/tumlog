@@ -1,0 +1,15 @@
+application: tum-log
+version: 1-6
+runtime: python
+api_version: 1
+
+handlers:
+- url: /log/css
+  static_dir: css
+- url: /log/js
+  static_dir: js
+- url: /img
+  static_dir: img
+
+- url: /.*
+  script: index.py
